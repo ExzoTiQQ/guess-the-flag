@@ -32,11 +32,10 @@ class App extends Component {
     if (countries && countries.length > 0) {
       currentCountry = getRandomCountry();
       choices.push(currentCountry);
+      choices.push(getRandomCountry());
+      choices.push(getRandomCountry());
+      choices.push(getRandomCountry());  
     }
-    choices.push(getRandomCountry());
-    choices.push(getRandomCountry());
-    choices.push(getRandomCountry());
-
     function getRandomCountry () {
       return countries[Math.floor(Math.random() * countries.length)]
     }
@@ -45,7 +44,7 @@ class App extends Component {
       <div className="App">
         <h1>Guess the flag</h1>
         <Flag flagUrl={currentCountry ? currentCountry.flag : ""} />
-        <CountryPick choices={choices} />
+        {choices.length > 0 ? <CountryPick choices={choices} /> : null}
       </div>
     );
   }
