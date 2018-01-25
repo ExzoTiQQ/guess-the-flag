@@ -61,8 +61,8 @@ class App extends Component {
         {!this.state.guessMade && this.state.choices.length > 0 
             ? <CountryPick choices={this.state.choices} onClick={this.handleChoice}/> 
             : this.state.result 
-              ? <div><h2>You guessed! {this.state.currentCountry.name}</h2><button onClick={this.handleContinue}>Continue?</button></div>
-              : <div><h2>You didn't guess! Correct: {this.state.currentCountry.name}</h2><button onClick={this.handleContinue}>Continue?</button></div>}
+              ? <div><h2>You guessed! {this.state.currentCountry.name}</h2><button className="continue" onClick={this.handleContinue}>Continue?</button></div>
+              : <div><h2>You didn't guess! Correct: {this.state.currentCountry.name}</h2><button className="continue" onClick={this.handleContinue}>Continue?</button></div>}
       </div>
       );
   }
