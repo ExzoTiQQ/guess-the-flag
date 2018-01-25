@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Flag from './Flag';
-import CountryPick from './CoutryPick';
+import CountryPick from './CountryPick';
 import './App.css';
 
 class App extends Component {
