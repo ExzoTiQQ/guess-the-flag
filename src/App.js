@@ -7,8 +7,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      countries: []
+      countries: [],
+      currentCountry: {},
+      choices: []
     }
+    this.handleChoice = this.handleChoice.bind(this);
   }
 
   componentDidMount() {
@@ -21,30 +24,28 @@ class App extends Component {
             flag: country.flag
           }
         ));
-        this.setState({countries});
+        var currentCountry = getRandomCountry();
+        var choices = [currentCountry, getRandomCountry(), getRandomCountry(), getRandomCountry()];
+        function getRandomCountry () {
+          return countries[Math.floor(Math.random() * countries.length)]
+        }
+        this.setState({countries, currentCountry, choices}, () => console.log(this.state));
       });
   }
 
+  handleChoice(e) {
+    var clicked = e.target.innerHTML;
+    console.log(clicked, this.state.currentCountry);
+  }
+
   render() {
-    var currentCountry;
-    var {countries} = this.state;
-    var choices = [];
-    if (countries && countries.length > 0) {
-      currentCountry = getRandomCountry();
-      choices.push(currentCountry);
-      choices.push(getRandomCountry());
-      choices.push(getRandomCountry());
-      choices.push(getRandomCountry());  
-    }
-    function getRandomCountry () {
-      return countries[Math.floor(Math.random() * countries.length)]
-    }
+    
 
     return (
       <div className="App">
         <h1>Guess the flag</h1>
-        <Flag flagUrl={currentCountry ? currentCountry.flag : ""} />
-        {choices.length > 0 ? <CountryPick choices={choices} /> : null}
+        <Flag flagUrl={this.state.currentCountry ? this.state.currentCountry.flag : ""} />
+        {this.state.choices.length > 0 ? <CountryPick choices={this.state.choices} onClick={this.handleChoice}/> : null}
       </div>
     );
   }
