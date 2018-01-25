@@ -1,0 +1,16 @@
+.choice {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    min-width: 30%;
+    border: 0;
+    background: #ddddff;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 20px;
+    transition: transform 0.1s;
+}
+
+.choice:hover {
+    transform: scale(1.03);
+}
