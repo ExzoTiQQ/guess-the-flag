@@ -57,12 +57,12 @@ class App extends Component {
       return (
       <div className="App">
         <h1>Guess the flag</h1>
-        {this.state.guessMade === false 
-            ? <Flag flagUrl={this.state.currentCountry.flag || ""} /> 
+        <Flag flagUrl={this.state.currentCountry.flag || null} /> 
+        {!this.state.guessMade && this.state.choices.length > 0 
+            ? <CountryPick choices={this.state.choices} onClick={this.handleChoice}/> 
             : this.state.result 
               ? <div><h2>You guessed! {this.state.currentCountry.name}</h2><button onClick={this.handleContinue}>Continue?</button></div>
               : <div><h2>You didn't guess! Correct: {this.state.currentCountry.name}</h2><button onClick={this.handleContinue}>Continue?</button></div>}
-        {!this.state.guessMade && this.state.choices.length > 0 ? <CountryPick choices={this.state.choices} onClick={this.handleChoice}/> : null}
       </div>
       );
   }
